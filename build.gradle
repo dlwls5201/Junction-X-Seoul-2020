@@ -21,7 +21,7 @@ buildscript {
 
         // retrofit
         retrofit_version = '2.9.0'
-        okhttp3_version = '4.8.0'
+        okhttp3_version = '3.8.1'
     }
 
     repositories {

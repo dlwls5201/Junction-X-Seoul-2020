@@ -1,7 +1,8 @@
-package com.junction.mymusicmap
+package com.junction.mymusicmap.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.junction.mymusicmap.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
