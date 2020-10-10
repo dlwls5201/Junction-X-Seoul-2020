@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.0"
+    buildToolsVersion '30.0.0'
 
     defaultConfig {
         applicationId "com.junction.mymusicmap"
@@ -84,4 +84,7 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:2.28.0'
     testImplementation 'org.mockito:mockito-inline:2.28.0'
 
+    //네이버 지도
+    implementation 'com.naver.maps:map-sdk:3.9.1'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
 }

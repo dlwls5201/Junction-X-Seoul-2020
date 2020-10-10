@@ -27,6 +27,9 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            url 'https://navercorp.bintray.com/maps'
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.1"
