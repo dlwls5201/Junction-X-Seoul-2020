@@ -1,6 +1,7 @@
 package com.junction.mymusicmap.di
 
 import com.junction.mymusicmap.BuildConfig
+import com.junction.mymusicmap.presentation.userpage.ZepetoService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -13,15 +14,16 @@ import java.util.concurrent.TimeUnit
 
 val networkModule = module {
 
-    val baseUrl = "https://api.github.com/"
+    val baseUrl = "https://render-api.zepeto.io/v2/"
 
-    single {
+    single<ZepetoService> {
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(get())
             .addCallAdapterFactory(get())
             .addConverterFactory(get())
             .build()
+            .create(ZepetoService::class.java)
     }
 
     single<CallAdapter.Factory> {
@@ -55,5 +57,4 @@ val networkModule = module {
             }
         }
     }
-
 }
