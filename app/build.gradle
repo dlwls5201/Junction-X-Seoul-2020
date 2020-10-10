@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.junction.mymusicmap"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -67,6 +67,11 @@ dependencies {
     // okhttp3
     implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
+
+    // glide
+    def glide_version = '4.11.0'
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
 
     //junit
     testImplementation 'junit:junit:4.12'
