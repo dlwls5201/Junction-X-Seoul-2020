@@ -8,7 +8,7 @@
 
         <variable
             name="model"
-            type="String" />
+            type="com.junction.mymusicmap.data.model.YouTubeResponse.Item" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,35 +21,62 @@
             android:id="@+id/ivIcon"
             android:layout_width="46dp"
             android:layout_height="46dp"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            bind:setImageUrl="@{model}"
+            bind:setImageUrl="@{model.thumbnail}"
             tools:src="@color/colorAccent" />
 
         <TextView
             android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Don't Call Me"
-            android:textColor="@color/black"
             android:layout_marginStart="10dp"
+            android:singleLine="true"
+            android:text="@{model.title}"
+            android:textColor="@color/black"
             android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@id/tvDescription"
+            app:layout_constraintEnd_toStartOf="@id/btnPlay"
             app:layout_constraintStart_toEndOf="@id/ivIcon"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Don't Call Me" />
 
         <TextView
             android:id="@+id/tvDescription"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Brando"
+            android:singleLine="true"
+            android:text="@{model.description}"
             android:textColor="@color/black"
             android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivIcon"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+            app:layout_constraintStart_toStartOf="@id/tvTitle"
+            app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            tools:text="Brando" />
+
+        <Button
+            android:id="@+id/btnPlay"
+            android:text="play"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvTitle"
+            app:layout_constraintEnd_toStartOf="@id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnSave"
+            android:text="save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnPlay"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
     </data>
 
     <LinearLayout
+        android:id="@+id/bottomSheetMusicSearch"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -26,16 +28,33 @@
             android:layout_marginStart="23dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="23dp"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
             android:background="@drawable/bg_white_rad_search_edit"
             android:hint="Search Music"
             android:padding="10dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvMusic"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:itemCount="6"
-            tools:listitem="@layout/item_music"
-            android:layout_marginTop="32dp" />
+            android:layout_height="600dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMusic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="6"
+                tools:listitem="@layout/item_music" />
+
+            <ProgressBar
+                android:id="@+id/progressLoading"
+                tools:visibility="visible"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </FrameLayout>
     </LinearLayout>
 </layout>
