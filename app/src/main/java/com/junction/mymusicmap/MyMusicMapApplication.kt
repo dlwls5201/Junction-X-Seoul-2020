@@ -1,6 +1,8 @@
 package com.junction.mymusicmap
 
 import android.app.Application
+import com.junction.mymusicmap.di.networkModule
+import com.junction.mymusicmap.di.viewModuleModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.logger.AndroidLogger
 import org.koin.core.context.startKoin
@@ -28,7 +30,8 @@ class MyMusicMapApplication : Application() {
 
             modules(
                 listOf(
-
+                    viewModuleModule,
+                    networkModule
                 )
             )
         }
