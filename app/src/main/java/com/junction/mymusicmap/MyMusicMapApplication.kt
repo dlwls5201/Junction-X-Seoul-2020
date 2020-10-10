@@ -1,6 +1,7 @@
 package com.junction.mymusicmap
 
 import android.app.Application
+import com.junction.mymusicmap.di.apiModule
 import com.junction.mymusicmap.di.networkModule
 import com.junction.mymusicmap.di.viewModuleModule
 import org.koin.android.ext.koin.androidContext
@@ -31,7 +32,8 @@ class MyMusicMapApplication : Application() {
             modules(
                 listOf(
                     viewModuleModule,
-                    networkModule
+                    networkModule,
+                    apiModule
                 )
             )
         }
