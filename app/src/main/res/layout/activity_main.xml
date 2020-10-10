@@ -1,16 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Button
-        android:id="@+id/btnMusicSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="model"
+            type="com.junction.mymusicmap.presentation.main.MainViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <fragment
+                android:id="@+id/fragmentMap"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:name="com.naver.maps.map.MapFragment"/>
+            <Button
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginStart="20dp"
+                android:onClick="@{() -> model.clickMyPage()}"
+                android:background="@drawable/btn_mypage"/>
+            <ImageView
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="36dp"
+                android:layout_gravity="end"
+                android:onClick="@{() -> model.clickSearchPage()}"
+                android:background="@drawable/btn_pinmusic"/>
+
+        </FrameLayout>
+        <LinearLayout
+            android:id="@+id/llMusicBox"
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
+            android:gravity="center_vertical"
+            android:visibility="gone">
+            <ImageView
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/rectangle_5"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="Music Name"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:textSize="14sp"
+                    android:text="Artist"/>
+            </LinearLayout>
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="28dp"
+                android:layout_marginEnd="26dp"
+                android:onClick="@{() -> model.clickPlayBtn()}"
+                android:background="@drawable/btn_play"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

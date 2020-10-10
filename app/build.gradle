@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion '30.0.0'
+    buildToolsVersion "30.0.0"
 
     defaultConfig {
         applicationId "com.junction.mymusicmap"
@@ -25,6 +25,11 @@ android {
 
     buildFeatures {
         dataBinding = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
