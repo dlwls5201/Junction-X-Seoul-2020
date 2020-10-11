@@ -164,7 +164,7 @@ class MusicSearchDialogFragment : BottomSheetDialogFragment() {
                             return super.onCreateViewHolder(parent, viewType).apply {
                                 itemView.btnPlay.setOnClickListener {
                                     val item = getItem(adapterPosition)
-                                    Dlog.d("btnPlay link : ${item.link}")
+                                    Dlog.d("btnPlay link : ${item.link} title : ${item.title} description : ${item.description}, thumbnail : ${item.thumbnail}")
 
                                     startActivity(
                                         Intent(Intent.ACTION_VIEW)
