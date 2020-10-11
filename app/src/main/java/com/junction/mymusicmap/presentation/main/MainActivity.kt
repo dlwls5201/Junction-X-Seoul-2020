@@ -6,6 +6,7 @@ import android.view.View
 import com.junction.mymusicmap.R
 import com.junction.mymusicmap.databinding.ActivityMainBinding
 import com.junction.mymusicmap.presentation.musicsearch.MusicSearchDialogFragment
+import com.junction.mymusicmap.presentation.userpage.UserPageDialogFragment
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
@@ -24,7 +25,6 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main), O
     private lateinit var mMap: NaverMap
     private lateinit var mlocationSource: FusedLocationSource
     private var mMarker = mutableListOf<Marker>()
-
 
     override fun onStart() {
         super.onStart()
@@ -142,7 +142,8 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main), O
             bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
         }
         btnProfile.setOnClickListener {
-            //TODO[승윤] 프로필 화면 이동
+            val bottomSheetFragment = UserPageDialogFragment()
+            bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
         }
     }
 
