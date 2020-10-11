@@ -31,7 +31,8 @@ The idea behind our project is to create an alternate way of sharing and connect
 - Choimin Jung. (https://github.com/miinjung)
 
 # Server Developer
-- Joos Lee (https://github.com/JoosJuliet)
+- Joos Lee (https://github.com/JoosJuliet) 
+ -> Server Repository : https://github.com/JoosJuliet/Junction-X-Seoul-2020/tree/master
 
 # Designer
 - HyeongJin Kim (https://www.behance.net/wwwhyeongj4196)
