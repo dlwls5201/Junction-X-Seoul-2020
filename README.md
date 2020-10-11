@@ -49,7 +49,11 @@ The idea behind our project is to create an alternate way of sharing and connect
 # App Screen 
 
 <img src="https://user-images.githubusercontent.com/40010002/95671096-e5690b80-0bcd-11eb-8026-63a71d24b088.png" width="200">
+
 <img src="https://user-images.githubusercontent.com/40010002/95671099-ee59dd00-0bcd-11eb-954c-5469b9f87d03.png" width="200">
+
 <img src="https://user-images.githubusercontent.com/40010002/95671100-f023a080-0bcd-11eb-9d43-a54f6b5abded.png" width="200">
+
 <img src="https://user-images.githubusercontent.com/40010002/95671102-f154cd80-0bcd-11eb-8d40-d7b4e0a6956e.png" width="200">
+
 <img src="https://user-images.githubusercontent.com/40010002/95671103-f285fa80-0bcd-11eb-8587-aca2868d1539.png" width="200">
