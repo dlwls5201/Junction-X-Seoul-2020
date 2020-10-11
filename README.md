@@ -1,13 +1,16 @@
 # Junction-X-Seoul-2020
 
-## - Our application, "zuk box,"  is a "music map SNS service" that shares the songs a user is listening to with users within a 5-km radius around them, by viewing a map.
+## Our application, "zuk box,"  is a "music map SNS service" that shares the songs a user is listening to with users within a 5-km radius around them, by viewing a map.
 
-## - description 
+## Server
+- Server Repository(https://github.com/JoosJuliet/Junction-X-Seoul-2020/tree/master)
+
+## description
 The idea behind our project is to create an alternate way of sharing and connecting interests through music. These connections are especially powerful during a time of isolation like the period the world is currently going through. 
 
-## - Technology 
+## Technology
 
-## client 
+### client
 - google gps
 - Rx Java
 - Retrofit2
@@ -16,7 +19,7 @@ The idea behind our project is to create an alternate way of sharing and connect
 - view model & live data
 - koin
 
-## server
+### server
 - aws lambda
 - aws api gate way
 - aws vpc
@@ -31,8 +34,7 @@ The idea behind our project is to create an alternate way of sharing and connect
 - Choimin Jung. (https://github.com/miinjung)
 
 # Server Developer
-- Joos Lee (https://github.com/JoosJuliet) 
- -> Server Repository : https://github.com/JoosJuliet/Junction-X-Seoul-2020/tree/master
+- Joos Lee (https://github.com/JoosJuliet)
 
 # Designer
 - HyeongJin Kim (https://www.behance.net/wwwhyeongj4196)
