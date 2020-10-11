@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.junction.mymusicmap.BR
 import com.junction.mymusicmap.R
@@ -235,10 +236,10 @@ class MusicSearchDialogFragment : BottomSheetDialogFragment() {
     }
 
     private fun showEmptyText() {
-        binding.tvEmpty.visibility = View.VISIBLE
+        binding.emptyDataView.visibility = View.VISIBLE
     }
 
     private fun hideEmptyText() {
-        binding.tvEmpty.visibility = View.GONE
+        binding.emptyDataView.visibility = View.GONE
     }
 }

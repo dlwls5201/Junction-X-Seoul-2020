@@ -57,7 +57,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
 
         mMap.addOnLocationChangeListener {
             myLocation = LatLng(it.latitude, it.longitude)
-            Dlog.d("MyTag", "latitude ${it.latitude} , latitude : ${it.longitude}")
         }
 
         mMap.cameraPosition = CameraPosition(LatLng(37.38001321351567, 127.11851119995116), 15.0)
@@ -69,7 +68,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
 
     private fun initMap() {
         val mapFragment = MapFragment.newInstance()
-        supportFragmentManager.beginTransaction().add(R.id.fragmentMap, mapFragment).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentMap, mapFragment).commit()
         mapFragment.getMapAsync(this)
     }
 
