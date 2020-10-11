@@ -34,4 +34,4 @@ The idea behind our project is to create an alternate way of sharing and connect
 - Joos Lee (https://github.com/JoosJuliet)
 
 # Designer
-- HyeongJin Kim
+- HyeongJin Kim (https://www.behance.net/wwwhyeongj4196)
