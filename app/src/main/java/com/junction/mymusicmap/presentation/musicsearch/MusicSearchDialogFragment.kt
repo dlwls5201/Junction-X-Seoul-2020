@@ -20,7 +20,6 @@ import com.junction.mymusicmap.data.api.YoutubeSearchApi
 import com.junction.mymusicmap.data.model.YouTubeResponse
 import com.junction.mymusicmap.databinding.BottomSheetMusicSearchBinding
 import com.junction.mymusicmap.databinding.ItemMusicBinding
-import com.tistory.blackjinbase.ext.toDp
 import com.tistory.blackjinbase.ext.toPx
 import com.tistory.blackjinbase.simplerecyclerview.SimpleRecyclerViewAdapter
 import com.tistory.blackjinbase.simplerecyclerview.SimpleViewHolder
@@ -63,7 +62,6 @@ class MusicSearchDialogFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initParentHeight()
         initEdittext()
     }
@@ -106,98 +104,109 @@ class MusicSearchDialogFragment : BottomSheetDialogFragment() {
         val deviceHeight: Int = displayMetrics.heightPixels
 
         val layoutParams = bottomSheetMusicSearch.layoutParams
-        layoutParams.height = deviceHeight - 50.toPx()
+        layoutParams.height = deviceHeight - 24.toPx()
 
         bottomSheetMusicSearch.layoutParams = layoutParams
     }
 
     private fun initEdittext() {
+        binding.btnSearch.setOnClickListener {
+            searchYouTube()
+        }
+
         binding.etMusicSearch.setOnEditorActionListener { v, actionId, event ->
             when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
-                    val query = v.text.toString()
-                    Dlog.d("query : $query")
-
-                    if (query.isEmpty()) {
-                        return@setOnEditorActionListener true
-                    }
-
-                    youtubeSearchApi.searchYoutube(query)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .doOnSubscribe {
-                            showLoading()
-                            hideKeyboard()
-                        }
-                        .doOnTerminate {
-                            hideEmptyText()
-                            hideLoading()
-                        }
-                        .subscribe({ response ->
-
-                            if(response.items.isNullOrEmpty()) {
-                                showEmptyText()
-                            } else {
-                                hideEmptyText()
-                            }
-
-                            with(binding.rvMusic) {
-                                adapter = object :
-                                    SimpleRecyclerViewAdapter<YouTubeResponse.Item, ItemMusicBinding>(
-                                        R.layout.item_music,
-                                        BR.model
-                                    ) {
-                                    override fun onCreateViewHolder(
-                                        parent: ViewGroup,
-                                        viewType: Int
-                                    ): SimpleViewHolder<ItemMusicBinding> {
-                                        return super.onCreateViewHolder(parent, viewType).apply {
-                                            itemView.btnPlay.setOnClickListener {
-                                                val item = getItem(adapterPosition)
-                                                Dlog.d("btnPlay link : ${item.link}")
-
-                                                startActivity(
-                                                    Intent(Intent.ACTION_VIEW)
-                                                        .setData(Uri.parse(item.link))
-                                                        .setPackage("com.google.android.youtube")
-                                                )
-
-                                                /*item.link?.let {
-                                                    val query = Uri.parse(it).getQueryParameters("v")
-                                                    Dlog.d("query : $query}")
-                                                    if(query.isNotEmpty()) {
-                                                        val videoId = query.first()
-                                                        Dlog.d("videoId : $videoId}")
-                                                        youtubeMp32Api.getMp3(videoId)
-                                                            .subscribe({
-                                                                Dlog.d(it.toString())
-                                                            }){
-                                                                Dlog.e(it.message)
-                                                            }
-                                                    }
-                                                }*/
-                                            }
-
-                                            itemView.btnSave.setOnClickListener {
-                                                val item = getItem(adapterPosition)
-                                                Dlog.d("btnSave item : $item")
-                                            }
-                                        }
-                                    }
-                                }.apply {
-                                    Dlog.d("items : ${response.items}")
-                                    binding.etMusicSearch.setText("")
-                                    replaceAll(response.items)
-                                }
-                            }
-                        }) {
-                            Dlog.e(it.message)
-                        }
+                    searchYouTube()
                 }
             }
 
             true
         }
     }
+
+    private fun searchYouTube() {
+        val query =  binding.etMusicSearch.text.toString()
+        Dlog.d("query : $query")
+
+        if (query.isEmpty()) {
+            return
+        }
+
+        youtubeSearchApi.searchYoutube(query)
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe {
+                showLoading()
+                hideKeyboard()
+            }
+            .doOnTerminate {
+                hideEmptyText()
+                hideLoading()
+            }
+            .subscribe({ response ->
+
+                if(response.items.isNullOrEmpty()) {
+                    showEmptyText()
+                } else {
+                    hideEmptyText()
+                }
+
+                with(binding.rvMusic) {
+                    adapter = object :
+                        SimpleRecyclerViewAdapter<YouTubeResponse.Item, ItemMusicBinding>(
+                            R.layout.item_music,
+                            BR.model
+                        ) {
+                        override fun onCreateViewHolder(
+                            parent: ViewGroup,
+                            viewType: Int
+                        ): SimpleViewHolder<ItemMusicBinding> {
+                            return super.onCreateViewHolder(parent, viewType).apply {
+                                itemView.btnPlay.setOnClickListener {
+                                    val item = getItem(adapterPosition)
+                                    Dlog.d("btnPlay link : ${item.link}")
+
+                                    startActivity(
+                                        Intent(Intent.ACTION_VIEW)
+                                            .setData(Uri.parse(item.link))
+                                            .setPackage("com.google.android.youtube")
+                                    )
+
+                                    /*item.link?.let {
+                                        val query = Uri.parse(it).getQueryParameters("v")
+                                        Dlog.d("query : $query}")
+                                        if(query.isNotEmpty()) {
+                                            val videoId = query.first()
+                                            Dlog.d("videoId : $videoId}")
+                                            youtubeMp32Api.getMp3(videoId)
+                                                .subscribe({
+                                                    Dlog.d(it.toString())
+                                                }){
+                                                    Dlog.e(it.message)
+                                                }
+                                        }
+                                    }*/
+                                }
+
+                                itemView.btnSave.setOnClickListener {
+                                    val item = getItem(adapterPosition)
+                                    Dlog.d("btnSave item : $item")
+                                }
+                            }
+                        }
+                    }.apply {
+                        Dlog.d("items : ${response.items}")
+                        binding.etMusicSearch.setText("")
+                        replaceAll(response.items)
+                    }
+                }
+            }) {
+                Dlog.e(it.message)
+            }.also {
+                compositeDisposable.add(it)
+            }
+    }
+
 
     override fun onDestroyView() {
         compositeDisposable.dispose()
