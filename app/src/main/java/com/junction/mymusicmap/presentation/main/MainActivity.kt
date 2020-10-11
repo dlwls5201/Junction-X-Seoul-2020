@@ -1,7 +1,6 @@
 package com.junction.mymusicmap.presentation.main
 
 import android.annotation.SuppressLint
-import android.location.LocationManager
 import android.util.Log
 import android.view.View
 import com.junction.mymusicmap.R
@@ -9,7 +8,6 @@ import com.junction.mymusicmap.databinding.ActivityMainBinding
 import com.junction.mymusicmap.presentation.musicsearch.MusicSearchDialogFragment
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
-import com.naver.maps.map.overlay.Align
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
