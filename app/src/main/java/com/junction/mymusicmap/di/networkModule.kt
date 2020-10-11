@@ -62,7 +62,7 @@ val networkModule = module {
                     request()
                         .newBuilder()
                         .addHeader("x-rapidapi-host", "youtube-to-mp32.p.rapidapi.com")
-                        .addHeader("x-rapidapi-key", "7d663afb3fmsh590bcfcede68795p19dc63jsn95cdec1c2d0b")
+                        .addHeader("x-rapidapi-key", "")
                         .build()
                 )
             }
@@ -105,7 +105,7 @@ val networkModule = module {
                     request()
                         .newBuilder()
                         .addHeader("x-rapidapi-host", "youtube-search-results.p.rapidapi.com")
-                        .addHeader("x-rapidapi-key", "7d663afb3fmsh590bcfcede68795p19dc63jsn95cdec1c2d0b")
+                        .addHeader("x-rapidapi-key", "")
                         .build()
                 )
             }
