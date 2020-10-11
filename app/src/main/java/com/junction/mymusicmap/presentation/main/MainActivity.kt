@@ -45,7 +45,7 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main), O
             }
         }*/
 
-        mMap.cameraPosition = CameraPosition(LatLng(37.38001321351567,127.11851119995116),17.0)
+        mMap.cameraPosition = CameraPosition(LatLng(37.38001321351567, 127.11851119995116),15.0)
 
         initMapSetting()
         //getLocation()
@@ -85,11 +85,6 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main), O
     @SuppressLint("ResourceAsColor")
     private fun getMarkerData(){
         val markers = listOf(
-            LatLng(37.56661020000002, -122.084000),
-            LatLng(50.56661020000002, -230.084022),
-            LatLng(37.56661020000002, -150.084030),
-            LatLng(37.5, -300.24),
-            LatLng(40.4, -127.10876941680907),
             LatLng(37.38001321351567, 127.11851119995116),
             LatLng(37.378546827477855, 127.11984157562254),
             LatLng(37.376637072444105, 127.12052822113036),
@@ -104,6 +99,8 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main), O
                 width = 85
                 height = 100
                 zIndex = 0
+                captionText = "Hoohoo"
+
                 setOnClickListener {
                     preMarker.width = 85
                     preMarker.height = 100
