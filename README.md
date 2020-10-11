@@ -5,8 +5,10 @@
 ## Description
 The idea behind our project is to create an alternate way of sharing and connecting interests through music. These connections are especially powerful during a time of isolation like the period the world is currently going through. 
 
-## Server Repository
-- [Repository](https://github.com/JoosJuliet/Junction-X-Seoul-2020/tree/master)
+## Link
+- [Server Repository](https://github.com/JoosJuliet/Junction-X-Seoul-2020/tree/master)
+- [Swagger API](https://nd03h1ctuj.execute-api.ap-northeast-2.amazonaws.com/prod/swagger/)
+- [Django Admin](https://21sx5ch894.execute-api.ap-northeast-2.amazonaws.com/prod/admin/login/?next=/prod/admin/)
 
 ## Demo Video
 - [Demo Video](https://www.youtube.com/watch?v=PGJOvwUSjnQ&feature=youtu.be)
