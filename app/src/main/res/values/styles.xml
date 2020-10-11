@@ -12,6 +12,6 @@
     </style>
 
     <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/bg_music_search_bottom_sheet</item>
+        <item name="android:background">@drawable/bg_user_bottom_sheet</item>
     </style>
 </resources>
