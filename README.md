@@ -3,7 +3,7 @@
 ## Our application, "zuk box,"  is a "music map SNS service" that shares the songs a user is listening to with users within a 5-km radius around them, by viewing a map.
 
 ## Server
-- Server Repository(https://github.com/JoosJuliet/Junction-X-Seoul-2020/tree/master)
+- [Server Repository](https://github.com/JoosJuliet/Junction-X-Seoul-2020/tree/master)
 
 ## description
 The idea behind our project is to create an alternate way of sharing and connecting interests through music. These connections are especially powerful during a time of isolation like the period the world is currently going through. 
