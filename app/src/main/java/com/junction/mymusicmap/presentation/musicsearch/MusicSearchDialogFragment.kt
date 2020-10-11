@@ -20,7 +20,9 @@ import com.junction.mymusicmap.data.api.YoutubeSearchApi
 import com.junction.mymusicmap.data.model.YouTubeResponse
 import com.junction.mymusicmap.databinding.BottomSheetMusicSearchBinding
 import com.junction.mymusicmap.databinding.ItemMusicBinding
+import com.junction.mymusicmap.presentation.main.MainActivity
 import com.tistory.blackjinbase.ext.toPx
+import com.tistory.blackjinbase.ext.toast
 import com.tistory.blackjinbase.simplerecyclerview.SimpleRecyclerViewAdapter
 import com.tistory.blackjinbase.simplerecyclerview.SimpleViewHolder
 import com.tistory.blackjinbase.util.Dlog
@@ -191,6 +193,8 @@ class MusicSearchDialogFragment : BottomSheetDialogFragment() {
                                 itemView.btnSave.setOnClickListener {
                                     val item = getItem(adapterPosition)
                                     Dlog.d("btnSave item : $item")
+                                    (activity as MainActivity).addPin(item)
+                                    requireContext().toast("${item.title}곡이 추가되었습니다.")
                                 }
                             }
                         }

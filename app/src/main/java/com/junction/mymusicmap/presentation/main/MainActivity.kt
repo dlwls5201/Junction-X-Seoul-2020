@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.junction.mymusicmap.R
+import com.junction.mymusicmap.data.model.YouTubeResponse
 import com.junction.mymusicmap.databinding.ActivityMainBinding
 import com.junction.mymusicmap.presentation.musicsearch.MusicSearchDialogFragment
 import com.naver.maps.geometry.LatLng
@@ -20,6 +21,7 @@ import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import com.tistory.blackjinbase.base.BaseActivity
+import com.tistory.blackjinbase.util.Dlog
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -46,18 +48,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
         initMap()
     }
 
+    private var myLocation: LatLng? = null
+
     override fun onMapReady(naverMap: NaverMap) {
         this.mMap = naverMap
         mMap.locationSource = mlocationSource
         mMap.locationTrackingMode = LocationTrackingMode.Follow
 
-        /*mMap.addOnLocationChangeListener {
-            if(flag) {
-                mMap.cameraPosition = CameraPosition(LatLng(it.latitude,it.longitude),17.0)
-                Dlog.d("MyTag","latitude ${it.latitude} , latitude : ${it.longitude}")
-                flag = !flag
-            }
-        }*/
+        mMap.addOnLocationChangeListener {
+            myLocation = LatLng(it.latitude, it.longitude)
+            Dlog.d("MyTag", "latitude ${it.latitude} , latitude : ${it.longitude}")
+        }
 
         mMap.cameraPosition = CameraPosition(LatLng(37.38001321351567, 127.11851119995116), 15.0)
 
@@ -183,7 +184,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
                 setOnClickListener {
 
                     Glide.with(this@MainActivity)
-                        .asBitmap().load(userData.userUrl).override(100,100)
+                        .asBitmap().load(userData.userUrl).override(100, 100)
                         .into(object : SimpleTarget<Bitmap>() {
                             override fun onResourceReady(
                                 resource: Bitmap,
@@ -212,6 +213,54 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
         mMarker.forEach {
             it.map = mMap
         }
+    }
+
+    fun addPin(item: YouTubeResponse.Item) {
+        if(myLocation == null) {
+            return
+        }
+
+        val userData =
+            UserData(
+                lating = myLocation!!,
+                userName = "musixbox95",
+                musicLink = item.link ?: "",
+                musicTile = item.title ?: "",
+                musicDescription = item.description ?: "",
+                musicThumbnail = item.thumbnail ?: ""
+            )
+
+        Dlog.d("MyTag", "userData : $userData")
+
+        mMarker.add(
+            Marker().apply {
+                position = userData.lating
+                iconTintColor = R.color.colorAccent
+                width = 85
+                height = 100
+                zIndex = 0
+                captionText = userData.musicTile
+
+                setOnClickListener {
+                    preMarker.width = 85
+                    preMarker.height = 100
+                    preMarker.icon = Marker.DEFAULT_ICON
+                    preMarker.zIndex = 0
+
+                    width = Marker.SIZE_AUTO
+                    height = Marker.SIZE_AUTO
+                    zIndex = 1
+                    icon = OverlayImage.fromResource(R.drawable.pin_othermusic_profile)
+                    preMarker = this@apply
+
+                    showMusicBar(userData)
+
+                    true
+                }
+            }
+        )
+
+        mMarker.last().map = mMap
     }
 
     @Parcelize
