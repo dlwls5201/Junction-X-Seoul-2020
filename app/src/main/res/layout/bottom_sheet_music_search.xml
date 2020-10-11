@@ -1,60 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
     </data>
 
-    <LinearLayout
-        android:id="@+id/bottomSheetMusicSearch"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:background="@drawable/bg_music_search_bottom_sheet">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="4dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_gray_bar" />
-
-        <EditText
-            android:id="@+id/etMusicSearch"
+        <LinearLayout
+            android:id="@+id/bottomSheetMusicSearch"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="23dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="23dp"
-            android:inputType="text"
-            android:imeOptions="actionSearch"
-            android:background="@drawable/bg_white_rad_search_edit"
-            android:hint="Search Music"
-            android:padding="10dp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:background="@drawable/bg_music_search_bottom_sheet">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="600dp">
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_gray_bar" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvMusic"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:itemCount="6"
-                tools:listitem="@layout/item_music" />
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="23dp">
 
-            <ProgressBar
-                android:id="@+id/progressLoading"
-                tools:visibility="visible"
-                android:visibility="gone"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </FrameLayout>
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/etMusicSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:background="@drawable/bg_white_rad_search_edit"
+                    android:hint="Search Music"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:paddingEnd="64dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="24dp"
+                    android:src="@drawable/icon_search" />
+            </RelativeLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvMusic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="6"
+                    tools:listitem="@layout/item_music" />
+
+                <ProgressBar
+                    android:id="@+id/progressLoading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tvEmpty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:text="Pin the music on the map\nand share it with people"
+                    android:textColor="#ababab"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    android:visibility="visible"
+                    tools:visibility="visible" />
+            </FrameLayout>
+        </LinearLayout>
+
+    </FrameLayout>
+
 </layout>

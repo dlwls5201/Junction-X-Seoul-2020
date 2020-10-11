@@ -5,13 +5,13 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.junction.mymusicmap.BR
 import com.junction.mymusicmap.R
@@ -20,6 +20,8 @@ import com.junction.mymusicmap.data.api.YoutubeSearchApi
 import com.junction.mymusicmap.data.model.YouTubeResponse
 import com.junction.mymusicmap.databinding.BottomSheetMusicSearchBinding
 import com.junction.mymusicmap.databinding.ItemMusicBinding
+import com.tistory.blackjinbase.ext.toDp
+import com.tistory.blackjinbase.ext.toPx
 import com.tistory.blackjinbase.simplerecyclerview.SimpleRecyclerViewAdapter
 import com.tistory.blackjinbase.simplerecyclerview.SimpleViewHolder
 import com.tistory.blackjinbase.util.Dlog
@@ -62,6 +64,54 @@ class MusicSearchDialogFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initParentHeight()
+        initEdittext()
+    }
+
+    private val audioURL =
+        "https://www.android-examples.com/wp-content/uploads/2016/04/Thunder-rumble.mp3"
+
+    private var flag = true
+
+    private var mediaplayer: MediaPlayer? = null
+
+    private fun test() {
+        /*binding.btnSample.text = "재생"
+        binding.btnSample.setOnClickListener {
+            if(flag) {
+                mediaplayer = MediaPlayer().apply {
+                    setDataSource(audioURL)
+                    prepareAsync()
+                    setOnPreparedListener {
+                        Dlog.d("MyTag","setOnPreparedListener")
+                        mediaplayer?.start()
+                    }
+                }
+                binding.btnSample.text = "멈춤"
+            } else {
+                mediaplayer?.stop()
+                mediaplayer = null
+                binding.btnSample.text = "재생"
+            }
+
+            flag = !flag
+        }*/
+    }
+
+    private fun initParentHeight() {
+        val displayMetrics = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
+
+        val deviceWidth: Int = displayMetrics.widthPixels
+        val deviceHeight: Int = displayMetrics.heightPixels
+
+        val layoutParams = bottomSheetMusicSearch.layoutParams
+        layoutParams.height = deviceHeight - 50.toPx()
+
+        bottomSheetMusicSearch.layoutParams = layoutParams
+    }
+
+    private fun initEdittext() {
         binding.etMusicSearch.setOnEditorActionListener { v, actionId, event ->
             when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
@@ -79,9 +129,17 @@ class MusicSearchDialogFragment : BottomSheetDialogFragment() {
                             hideKeyboard()
                         }
                         .doOnTerminate {
+                            hideEmptyText()
                             hideLoading()
                         }
                         .subscribe({ response ->
+
+                            if(response.items.isNullOrEmpty()) {
+                                showEmptyText()
+                            } else {
+                                hideEmptyText()
+                            }
+
                             with(binding.rvMusic) {
                                 adapter = object :
                                     SimpleRecyclerViewAdapter<YouTubeResponse.Item, ItemMusicBinding>(
@@ -141,36 +199,6 @@ class MusicSearchDialogFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private val audioURL =
-        "https://www.android-examples.com/wp-content/uploads/2016/04/Thunder-rumble.mp3"
-
-    private var flag = true
-
-    private var mediaplayer: MediaPlayer? = null
-
-    private fun test() {
-        /*binding.btnSample.text = "재생"
-        binding.btnSample.setOnClickListener {
-            if(flag) {
-                mediaplayer = MediaPlayer().apply {
-                    setDataSource(audioURL)
-                    prepareAsync()
-                    setOnPreparedListener {
-                        Dlog.d("MyTag","setOnPreparedListener")
-                        mediaplayer?.start()
-                    }
-                }
-                binding.btnSample.text = "멈춤"
-            } else {
-                mediaplayer?.stop()
-                mediaplayer = null
-                binding.btnSample.text = "재생"
-            }
-
-            flag = !flag
-        }*/
-    }
-
     override fun onDestroyView() {
         compositeDisposable.dispose()
         super.onDestroyView()
@@ -191,5 +219,13 @@ class MusicSearchDialogFragment : BottomSheetDialogFragment() {
             requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(etMusicSearch.windowToken, 0)
         etMusicSearch.clearFocus()
+    }
+
+    private fun showEmptyText() {
+        binding.tvEmpty.visibility = View.VISIBLE
+    }
+
+    private fun hideEmptyText() {
+        binding.tvEmpty.visibility = View.GONE
     }
 }
