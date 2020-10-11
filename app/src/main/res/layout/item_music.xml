@@ -13,20 +13,29 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="54dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="10dp"
         android:paddingStart="23dp"
-        android:paddingEnd="20dp">
+        android:paddingEnd="10dp">
 
-        <ImageView
-            android:id="@+id/ivIcon"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvIcon"
             android:layout_width="46dp"
             android:layout_height="46dp"
-            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            bind:setImageUrl="@{model.thumbnail}"
-            tools:src="@color/colorAccent" />
+            app:cardElevation="0dp"
+            app:cardCornerRadius="6dp">
+
+            <ImageView
+                android:id="@+id/ivIcon"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:scaleType="centerCrop"
+                bind:setImageUrl="@{model.thumbnail}"
+                tools:src="@color/colorAccent" />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tvTitle"
@@ -39,7 +48,7 @@
             android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@id/tvDescription"
             app:layout_constraintEnd_toStartOf="@id/btnPlay"
-            app:layout_constraintStart_toEndOf="@id/ivIcon"
+            app:layout_constraintStart_toEndOf="@id/cvIcon"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
             tools:text="Don't Call Me" />
@@ -48,7 +57,6 @@
             android:id="@+id/tvDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:singleLine="true"
             android:text="@{model.description}"
             android:textColor="@color/black"
@@ -59,9 +67,10 @@
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             tools:text="Brando" />
 
-        <Button
+        <ImageView
             android:id="@+id/btnPlay"
-            android:text="play"
+            android:src="@drawable/btn_play"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvTitle"
@@ -69,9 +78,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <Button
+        <ImageView
             android:id="@+id/btnSave"
-            android:text="save"
+            android:src="@drawable/group_54"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/btnPlay"
