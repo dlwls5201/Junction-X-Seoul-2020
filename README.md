@@ -8,6 +8,9 @@
 ## description
 The idea behind our project is to create an alternate way of sharing and connecting interests through music. These connections are especially powerful during a time of isolation like the period the world is currently going through. 
 
+##
+- [Demo Video](https://www.youtube.com/watch?v=PGJOvwUSjnQ&feature=youtu.be)
+
 ## Technology
 
 ### client
