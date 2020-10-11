@@ -1,9 +1,9 @@
 package com.junction.mymusicmap.di
 
 import com.junction.mymusicmap.BuildConfig
+import com.junction.mymusicmap.presentation.userpage.ZepetoService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -15,6 +15,18 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val networkModule = module {
+
+    val baseUrl = "https://render-api.zepeto.io/v2/"
+
+    single<ZepetoService> {
+        Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .client(get())
+            .addCallAdapterFactory(get())
+            .addConverterFactory(get())
+            .build()
+            .create(ZepetoService::class.java)
+    }
 
     val mp32Url = "https://youtube-to-mp32.p.rapidapi.com"
 
