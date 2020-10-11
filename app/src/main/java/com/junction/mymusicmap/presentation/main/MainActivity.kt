@@ -37,16 +37,23 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main), O
         mMap.locationSource = mlocationSource
         mMap.locationTrackingMode = LocationTrackingMode.Follow
 
-        mMap.addOnLocationChangeListener {
-            mMap.cameraPosition = CameraPosition(LatLng(it.latitude,it.longitude),0.0)
-        }
+        /*mMap.addOnLocationChangeListener {
+            if(flag) {
+                mMap.cameraPosition = CameraPosition(LatLng(it.latitude,it.longitude),17.0)
+                Dlog.d("MyTag","latitude ${it.latitude} , latitude : ${it.longitude}")
+                flag = !flag
+            }
+        }*/
+
+        mMap.cameraPosition = CameraPosition(LatLng(37.38001321351567,127.11851119995116),17.0)
+
         initMapSetting()
-        getLocation()
+        //getLocation()
         getMarkerData()
+        initButton()
     }
 
     private fun initMap(){
-        Log.d("test","map")
         val mapFragment = MapFragment.newInstance()
         supportFragmentManager.beginTransaction().add(R.id.fragmentMap,mapFragment).commit()
         mapFragment.getMapAsync(this)
@@ -103,7 +110,7 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main), O
                     preMarker.icon = Marker.DEFAULT_ICON
                     preMarker.zIndex = 0
                     //캡션 왜 안나오냐....젠
-                    captionText = "존나 자고싶다"
+                    captionText = "Hoohoo"
                     captionColor =  R.color.cornflower
                     width = Marker.SIZE_AUTO
                     height = Marker.SIZE_AUTO
@@ -129,8 +136,17 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main), O
     }
 
     private fun pinClickEvent() {
-        val bottomSheetFragment = MusicSearchDialogFragment()
-        bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+        //TODO[승윤] 프로필 화면 이동
+    }
+
+    private fun initButton() {
+        btnSearchMusic.setOnClickListener {
+            val bottomSheetFragment = MusicSearchDialogFragment()
+            bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+        }
+        btnProfile.setOnClickListener {
+            //TODO[승윤] 프로필 화면 이동
+        }
     }
 
     companion object {

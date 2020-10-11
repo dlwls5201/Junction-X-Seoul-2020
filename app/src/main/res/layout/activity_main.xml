@@ -24,19 +24,19 @@
                 android:layout_height="match_parent"
                 android:name="com.naver.maps.map.MapFragment"/>
             <Button
+                android:id="@+id/btnProfile"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
                 android:layout_marginTop="36dp"
                 android:layout_marginStart="20dp"
-                android:onClick="@{() -> model.clickMyPage()}"
                 android:background="@drawable/btn_mypage"/>
             <ImageView
+                android:id="@+id/btnSearchMusic"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginTop="36dp"
                 android:layout_gravity="end"
-                android:onClick="@{() -> model.clickSearchPage()}"
                 android:background="@drawable/btn_pinmusic"/>
 
         </FrameLayout>
